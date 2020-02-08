@@ -1,4 +1,5 @@
 import config from './modules/config.js';
+// import token from './modules/auth.js';
 
 /**
  * Main list view script
@@ -9,3 +10,8 @@ import config from './modules/config.js';
  * @package Taskbook
  */
 
+//  if ( token === null ) {
+//      window.location - `${window.location.origin}/login.html`;
+//  } else {
+//      console.log( 'token: ', token);
+//  }
