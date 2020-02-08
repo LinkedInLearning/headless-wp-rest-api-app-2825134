@@ -1,5 +1,8 @@
 import config from './modules/config.js';
 import token from './modules/auth.js';
+import logout from './modules/logout.js';
+
+logout();
 
 /**
  * Main list view script
