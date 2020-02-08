@@ -124,7 +124,19 @@ const getTaskList = ( listRoute ) => {
 	loader.style.display = 'block';
 
     // Fetch the 10 latest tasks.
-
+    fetch( listRoute, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + sessionStorage.getItem( config.tokenName )
+        }
+    })
+    .then( response => response.json() )
+    .then( taskObjectList => createTaskList( taskObjectList ) )
+    .catch( (error) => {
+        console.error( 'Fetch error: ', error );
+        loader.style.display = 'none';
+    })
 
 }
 
