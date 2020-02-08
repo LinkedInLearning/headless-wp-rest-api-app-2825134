@@ -1,9 +1,6 @@
 # COURSENAME
-This is the repository for the LinkedIn Learning course [COURSENAME]. The full course is available from [LinkedIn Learning](LICOURSEURL).
+This is the repository for the LinkedIn Learning course WordPress: Building a Headless App with the REST API. The full course is available from LinkedIn Learning.
 
-[![COURSENAME](COURSEIMAGE)](LICOURSEURL)
-
-[COURSEDESCRIPTION]
 
 ## Instructions
 This repository has branches for each of the videos in the course. You can use the branch pop up menu in github to switch to a specific branch and take a look at the course at that stage, or you can add `/tree/BRANCH_NAME` to the URL to go to the branch you want to access.
@@ -14,6 +11,7 @@ Some branches will have a beginning and an end state. These are marked with the 
 
 ## Installing
 1. To use these exercise files, you must have the following installed:
-	- [list of requirements for course]
-2. Clone this repository into your local machine using the terminal (Mac), CMD (Windows), or a GUI tool like SourceTree.
-3. [Course-specific instructions]
+	- WordPress
+	- The Taskbook plugin from the other set of exercise files in this course.
+2. Clone this repository to any folder of your computer using the terminal (Mac), CMD (Windows), or a GUI tool like SourceTree.
+3. Open the folder using a code editor like VS Code, and run the app in a live server environment.
