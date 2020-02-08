@@ -1,3 +1,5 @@
+import config from './config.js';
+
 const loader = document.querySelector( '.loader' );
 
 // Get the container that will hold the chart:
@@ -16,19 +18,19 @@ function getLevel(objectLevel) {
     let level = objectLevel;
   
     switch (level) {
-      case -2:
+      case 1:
         return 'Very stressed';
         break;
-      case -1:
+      case 2:
         return 'Somewhat stressed';
         break;
-      case 0:
+      case 3:
         return 'Neutral';
         break;
-      case 1:
+      case 4:
         return 'Somewhat relaxed';
         break;
-      case 2:
+      case 5:
         return 'Very relaxed';
         break;
     }
@@ -49,8 +51,8 @@ function generateChart(object) {
     // Loop through the returned REST API object and populate object:
     for(var i=0; i<object.length; i++) {
         taskData.xLabels.push(object[i].id);
-        taskData.preLevel.push(object[i].cmb2.taskbook_rest_metabox.taskbook_pre_level-2);
-        taskData.postLevel.push(object[i].cmb2.taskbook_rest_metabox.taskbook_post_level-2);
+        taskData.preLevel.push(object[i].cmb2.taskbook_rest_metabox.taskbook_pre_level);
+        taskData.postLevel.push(object[i].cmb2.taskbook_rest_metabox.taskbook_post_level);
     }
     // Reverse results to display the oldest first:
     taskData.xLabels.reverse();
@@ -60,7 +62,7 @@ function generateChart(object) {
     // Set up the bar chart data model:
     var barChartData = {
         xLabels: taskData.xLabels,
-        yLabels: ['Very stressed', 'Somewhat stressed', 'Neutral', 'Somewhat relaxed', 'Very relaxed'],
+        // yLabels: ['Very stressed', 'Somasdfsdfewhat stressed', 'Neutral', 'Somewhat relaxed', 'Very relaxed'],
         datasets: [
             {
             label: 'Pre-task',
@@ -105,8 +107,8 @@ function generateChart(object) {
             scales: {
                 yAxes: [{
                     ticks: {
-                        max: 2,
-                        min: -2,
+                        max: 5,
+                        min: 1,
                         stepSize: 1,
                         // Dislay the human readable level values on the Y axes:
                         callback: function(value, index, values) {
@@ -157,7 +159,7 @@ const getChart = ( taskRoute ) => {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + sessionStorage.getItem( 'taskAppToken' )
+                'Authorization': 'Bearer ' + sessionStorage.getItem( config.tokenName )
             }
         })
         .then( response => response.json() )

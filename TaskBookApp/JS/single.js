@@ -2,6 +2,7 @@ import config from './modules/config.js';
 import token from './modules/auth.js';
 import logout from './modules/logout.js';
 import getSingleTask from './modules/loadsingle.js';
+import monitorFormSubmit from './modules/edittask.js';
 
 // Get the current URL and grab the value from the task query parameter:
 var urlParams = new URLSearchParams( window.location.search );
@@ -24,14 +25,11 @@ if ( token === null ) {
 	 */
 	if ( taskID ) {
         // If we have a task ID, this is not a new task.
-		console.log('taskID');
 		let taskRoute = config.taskRoute + taskID;
-		getSingleTask( taskRoute, false );
+		getSingleTask( taskRoute );
 		
 	} else {
         // If we don't have a task ID, this is a new task.
-		console.log('no taskID');
-		let taskRoute = config.taskRoute;
-		getSingleTask( taskRoute, true );
+		monitorFormSubmit( true );
 	}
 }
