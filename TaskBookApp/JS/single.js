@@ -19,6 +19,19 @@ logout();
 if ( token === null ) {
     window.location = `${window.location.origin}/login.html`;
 } else {
-    let taskRoute = config.taskRoute + taskID;
-    getSingleTask( taskRoute );
+	/**
+	 * Calls getSingleTask and sets newTask.
+	 */
+	if ( taskID ) {
+        // If we have a task ID, this is not a new task.
+		console.log('taskID');
+		let taskRoute = config.taskRoute + taskID;
+		getSingleTask( taskRoute, false );
+		
+	} else {
+        // If we don't have a task ID, this is a new task.
+		console.log('no taskID');
+		let taskRoute = config.taskRoute;
+		getSingleTask( taskRoute, true );
+	}
 }

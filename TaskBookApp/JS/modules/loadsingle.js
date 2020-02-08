@@ -1,4 +1,5 @@
 import config from './config.js';
+import monitorFormSubmit from './edittask.js';
 
 const loader = document.querySelector( '.loader' );
 
@@ -158,29 +159,33 @@ function buildTask( taskObject ) {
  * Run an AJAX REST request with the help of JSO's jQuery wrapper.
  */
 
-const getSingleTask = ( taskRoute ) => {
+const getSingleTask = ( taskRoute, newTask ) => {
 
-    // Display the loading spinner as we wait for the response. 
-    loader.style.display = 'block'; 
+    if ( newTask ) {
+        monitorFormSubmit( newTask );
+    } else {
+        // Display the loading spinner as we wait for the response. 
+	    loader.style.display = 'block'; 
 
-    // Fetch the single task.
-    fetch( taskRoute, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + sessionStorage.getItem( config.tokenName )
-        }
-    })
-    .then( response => response.json() )
-    .then( taskObject => buildTask( taskObject ) )
-    .then( () => {
-        loader.style.display = 'none';
-    } )
-    .catch( (error) => {
-        console.error('Fetch error:', error);
-        // Stop the spinner.
-        loader.style.display = 'none';
-    });
+        fetch( taskRoute, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + sessionStorage.getItem( config.tokenName )
+                }
+            })
+            .then( response => response.json() )
+            .then( taskObject => buildTask( taskObject ) )
+            .then( ( taskObject ) => {
+                loader.style.display = 'none';
+                monitorFormSubmit( newTask );
+            } )
+            .catch( (error) => {
+                console.error('Fetch error:', error);
+                // Stop the spinner.
+                loader.style.display = 'none';
+            });
+    }
 	
 }
 

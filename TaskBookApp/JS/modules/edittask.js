@@ -47,7 +47,29 @@ function submitTask( newTask ) {
     }
     
     // Send a POST request with the form data to the route.
-    
+    fetch( requestRoute, {
+            method: 'POST',
+            body: JSON.stringify( formData ),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + sessionStorage.getItem( config.tokenName )
+            }
+        })
+        .then( response => response.json() )
+        .then( () => {
+            if ( newTask ) {
+                window.location = window.location.origin;
+            } else {
+                window.location.reload();
+            }
+
+        })
+        .catch( (error) => {
+            console.error('Fetch error:', error);
+            // Stop the spinner.
+            loader.style.display = 'none';
+        });
+
 }
 
 const monitorFormSubmit = ( newTask ) => {
@@ -59,7 +81,6 @@ const monitorFormSubmit = ( newTask ) => {
     if ( taskForm ) {
         taskForm.addEventListener( 'submit', ( event ) => {
             event.preventDefault();
-            console.log(event)
             submitTask( newTask );
         });
     }
