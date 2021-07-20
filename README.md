@@ -1,5 +1,5 @@
-# COURSENAME
-This is the repository for the LinkedIn Learning course WordPress: Building a Headless App with the REST API. The full course is available from LinkedIn Learning.
+# Building A Headless WordPress App with REST API
+This is the repository for the LinkedIn Learning course [WordPress: Building a Headless App with the REST API](https://www.linkedin.com/learning/building-a-headless-wordpress-app-with-rest-api/). The full course is available from LinkedIn Learning.
 
 
 ## Instructions
